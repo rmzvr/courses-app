@@ -1,0 +1,44 @@
+.course {
+	display: grid;
+	grid-template-columns: 8fr 3.84fr;
+	column-gap: 3rem;
+
+	border: 2px solid rgb(78, 165, 78);
+	padding: 1.4rem;
+}
+
+.title {
+	margin-bottom: 1.2rem;
+}
+
+.description {
+	font-size: 0.938rem;
+}
+
+.details {
+	display: grid;
+	row-gap: 0.6rem;
+	margin-bottom: 1rem;
+}
+
+.detail {
+	display: flex;
+	gap: 0.3rem;
+}
+
+.detail__title {
+	font-weight: bold;
+}
+
+.detail__content {
+	display: inline-block;
+	max-width: 27ch;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.course__button-container {
+	display: flex;
+	justify-content: center;
+}

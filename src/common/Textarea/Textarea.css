@@ -1,0 +1,19 @@
+textarea {
+	padding-block: 0.8em;
+	padding-inline: 0.8em;
+	border: 2px solid orange;
+	width: 100%;
+	font-size: 0.813rem;
+	min-height: 13ch;
+	resize: vertical;
+}
+
+label {
+	display: block;
+	margin-bottom: 0.4rem;
+}
+
+textarea:hover,
+textarea:focus {
+	outline: none;
+}

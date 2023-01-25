@@ -1,0 +1,9 @@
+.courses {
+	display: grid;
+	row-gap: 1.4rem;
+
+	border: 2px solid rgb(94, 194, 228);
+
+	padding-block: 1.4rem;
+	padding-inline: 1.6rem;
+}

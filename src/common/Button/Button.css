@@ -1,0 +1,19 @@
+button {
+	width: max-content;
+	height: max-content;
+	padding-block: 0.4em;
+	padding-inline: 2em;
+	border: 2px solid rgb(132, 224, 255);
+
+	background-color: transparent;
+
+	cursor: pointer;
+}
+
+button.small {
+	font-size: 0.833rem;
+}
+
+button.big {
+	font-size: 0.938rem;
+}

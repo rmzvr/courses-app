@@ -1,0 +1,13 @@
+header {
+	display: flex;
+	align-items: center;
+
+	padding-block: 0.2rem;
+	padding-inline: 1.2rem;
+
+	border: 2px solid orange;
+}
+
+.username {
+	margin-inline: 2rem;
+}

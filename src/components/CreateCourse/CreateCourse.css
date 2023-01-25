@@ -1,0 +1,73 @@
+.add-course-form {
+	display: grid;
+	row-gap: 1.4rem;
+
+	border: 2px solid rgb(94, 194, 228);
+
+	padding-block: 1.4rem;
+	padding-inline: 1.6rem;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.form-details {
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+
+	padding-block: 2rem;
+	padding-inline: 1rem;
+	border: 2px solid #000;
+}
+
+.form-details__item {
+	display: grid;
+	gap: 1rem;
+
+	grid-auto-rows: max-content;
+}
+
+.form-details__item input {
+	width: 100%;
+}
+
+.form-details__item-title {
+	text-align: center;
+	font-weight: 400;
+}
+
+.button-wrapper {
+	text-align: center;
+}
+
+.list {
+	display: grid;
+	gap: 0.6rem;
+}
+
+.list__item {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-items: center;
+	align-items: center;
+}
+
+.duration-time {
+	font-size: 1.7rem;
+	font-weight: 300;
+}
+
+.duration-time>.bold {
+	font-size: 2.1rem;
+	font-weight: 400;
+}
+
+.list-empty {
+	text-align: center;
+	font-size: 0.938rem;
+}
