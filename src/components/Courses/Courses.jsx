@@ -3,7 +3,7 @@ import CourseCard from './components/CourseCard/CourseCard';
 import SearchBar from './components/SearchBar/SearchBar';
 import './Courses.css';
 
-function Courses({ handleFormVisibility, courses, setCourses, authors }) {
+function Courses({ courses, setCourses, authors }) {
 	const [searchValue, setSearchValue] = useState('');
 	const [filteredCourses, setFilteredCourses] = useState([...courses]);
 
@@ -37,7 +37,6 @@ function Courses({ handleFormVisibility, courses, setCourses, authors }) {
 				value={searchValue}
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
-				handleClick={handleFormVisibility}
 			/>
 			{filteredCourses.map((course) => (
 				<CourseCard

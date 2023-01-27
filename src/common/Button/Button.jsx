@@ -1,9 +1,15 @@
 import React from 'react';
 import './Button.css';
 
-function Button({ type = 'button', size = 'big', onClick, children }) {
+function Button({
+	className,
+	type = 'button',
+	size = 'big',
+	onClick,
+	children,
+}) {
 	return (
-		<button className={size} type={type} onClick={onClick}>
+		<button className={`${className} ${size}`} type={type} onClick={onClick}>
 			{children}
 		</button>
 	);

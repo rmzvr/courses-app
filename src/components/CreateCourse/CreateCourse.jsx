@@ -12,8 +12,11 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import timeConvert from '../../helpers/pipeDuration';
 import { mockedAuthorsList } from '../../mocks';
+import { useNavigate } from 'react-router-dom';
 
-function CreateCourse({ handleFormVisibility, setCourses, setAuthors }) {
+function CreateCourse({ setCourses, setAuthors }) {
+	const navigate = useNavigate();
+
 	const [fields, setFields] = useState({
 		title: '',
 		description: '',
@@ -107,7 +110,6 @@ function CreateCourse({ handleFormVisibility, setCourses, setAuthors }) {
 					name='title'
 					labelText='Title'
 					placeholder='Enter title...'
-					required='true'
 					value={fields.title}
 					onChange={updateField}
 				/>
@@ -115,7 +117,7 @@ function CreateCourse({ handleFormVisibility, setCourses, setAuthors }) {
 					onClick={() => {
 						if (isAuthorsAdded() && isFieldsValidated()) {
 							addNewCourse();
-							handleFormVisibility();
+							navigate('/courses');
 						} else {
 							alert('Please, fill in all fields');
 						}

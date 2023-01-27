@@ -1,18 +1,10 @@
-.course {
+.course-card {
 	display: grid;
 	grid-template-columns: 8fr 3.84fr;
 	column-gap: 3rem;
 
 	border: 2px solid rgb(78, 165, 78);
 	padding: 1.4rem;
-}
-
-.title {
-	margin-bottom: 1.2rem;
-}
-
-.description {
-	font-size: 0.938rem;
 }
 
 .details {
@@ -36,9 +28,4 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-}
-
-.course__button-container {
-	display: flex;
-	justify-content: center;
 }

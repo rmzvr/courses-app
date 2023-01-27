@@ -1,0 +1,31 @@
+.login {
+	border: 2px solid lightblue;
+	display: grid;
+	place-content: center;
+	height: 88vh;
+}
+
+.login__title {
+	text-align: center;
+	margin-bottom: 1.2rem;
+	font-weight: 500;
+}
+
+.login__form {
+	display: grid;
+}
+
+.login__form-items {
+	display: grid;
+	gap: 1rem;
+	margin: 0 auto;
+}
+
+.login__form-button {
+	justify-self: center;
+	margin-top: 1rem;
+}
+
+.login__hint {
+	margin-top: 2rem;
+}

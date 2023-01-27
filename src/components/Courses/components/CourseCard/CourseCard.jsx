@@ -4,8 +4,11 @@ import timeConvert from '../../../../helpers/pipeDuration';
 import './CourseCard.css';
 import Button from '../../../../common/Button/Button';
 import { BUTTON_SHOW_COURSE } from '../../../../constants';
+import { useNavigate } from 'react-router-dom';
 
 function CourseCard({ course, authors }) {
+	const navigate = useNavigate();
+
 	function getAuthors() {
 		return course.authors.map((authorId) => {
 			const author = authors.find((author) => author.id === authorId);
@@ -14,15 +17,19 @@ function CourseCard({ course, authors }) {
 		});
 	}
 
+	function navigateToCourse(id) {
+		navigate(id);
+	}
+
 	return (
-		<article className='course'>
-			<div className='course__description'>
+		<article className='course-card'>
+			<div className='course-card__description'>
 				<h2 className='title'>{course.title}</h2>
 
 				<p className='description'>{course.description}</p>
 			</div>
 
-			<div className='course__info'>
+			<div className='course-card__info'>
 				<ul className='details'>
 					<li className='detail'>
 						<span className='detail__title'>Authors:</span>
@@ -47,8 +54,10 @@ function CourseCard({ course, authors }) {
 					</li>
 				</ul>
 
-				<div className='course__button-container'>
-					<Button>{BUTTON_SHOW_COURSE}</Button>
+				<div className='course-card__button-container'>
+					<Button onClick={() => navigateToCourse(course.id)}>
+						{BUTTON_SHOW_COURSE}
+					</Button>
 				</div>
 			</div>
 		</article>
