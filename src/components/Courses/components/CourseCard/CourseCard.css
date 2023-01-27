@@ -29,3 +29,9 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+.course-card__button-container {
+	display: flex;
+	gap: 0.8rem;
+	margin-left: auto;
+}

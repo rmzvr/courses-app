@@ -11,11 +11,16 @@ import {
 } from '../../constants';
 import { v4 as uuidv4 } from 'uuid';
 import timeConvert from '../../helpers/pipeDuration';
-import { mockedAuthorsList } from '../../mocks';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCourse } from '../../store/coursesSlice';
+import { selectAllAuthors } from '../../store/authorsSlice';
+import { addAuthor } from '../../store/authorsSlice';
 
-function CreateCourse({ setCourses, setAuthors }) {
+function CreateCourse() {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const authors = useSelector(selectAllAuthors);
 
 	const [fields, setFields] = useState({
 		title: '',
@@ -24,7 +29,7 @@ function CreateCourse({ setCourses, setAuthors }) {
 		author: '',
 	});
 
-	const [availableAuthors, setAvailableAuthors] = useState(mockedAuthorsList);
+	const [availableAuthors, setAvailableAuthors] = useState(authors);
 	const [selectedAuthors, setSelectedAuthors] = useState([]);
 
 	function updateField(event) {
@@ -57,7 +62,8 @@ function CreateCourse({ setCourses, setAuthors }) {
 	function addAuthorToCourse(author) {
 		setAvailableAuthors((prev) => prev.filter((a) => a.id !== author.id));
 		setSelectedAuthors((prev) => [...prev, author]);
-		setAuthors((prev) => [...prev, author]);
+
+		dispatch(addAuthor(author));
 	}
 
 	function deleteAuthorFromCourse(author) {
@@ -71,11 +77,11 @@ function CreateCourse({ setCourses, setAuthors }) {
 			title: fields.title,
 			description: fields.description,
 			duration: fields.duration,
-			creationDate: new Date(),
+			creationDate: new Date().toDateString(),
 			authors: [...selectedAuthors.map((author) => author.id)],
 		};
 
-		setCourses((prev) => [...prev, course]);
+		dispatch(addCourse(course));
 	}
 
 	function isFieldsValidated() {

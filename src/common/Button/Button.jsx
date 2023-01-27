@@ -2,14 +2,19 @@ import React from 'react';
 import './Button.css';
 
 function Button({
-	className,
+	className = '',
 	type = 'button',
 	size = 'big',
+	form = '',
 	onClick,
 	children,
 }) {
 	return (
-		<button className={`${className} ${size}`} type={type} onClick={onClick}>
+		<button
+			className={`${className} ${size} ${form}`}
+			type={type}
+			onClick={onClick}
+		>
 			{children}
 		</button>
 	);

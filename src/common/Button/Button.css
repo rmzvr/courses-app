@@ -1,4 +1,7 @@
 button {
+	display: inline-grid;
+	place-content: center;
+
 	width: max-content;
 	height: max-content;
 	padding-block: 0.4em;
@@ -16,4 +19,8 @@ button.small {
 
 button.big {
 	font-size: 0.938rem;
+}
+
+button.squared {
+	padding: 0.4em;
 }

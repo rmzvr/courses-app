@@ -1,15 +1,35 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuthorsAsync, selectAllAuthors } from '../../store/authorsSlice';
+import { getCoursesAsync, selectAllCourses } from '../../store/coursesSlice';
 import CourseCard from './components/CourseCard/CourseCard';
 import SearchBar from './components/SearchBar/SearchBar';
 import './Courses.css';
 
-function Courses({ courses, setCourses, authors }) {
-	const [searchValue, setSearchValue] = useState('');
-	const [filteredCourses, setFilteredCourses] = useState([...courses]);
+function Courses() {
+	const dispatch = useDispatch();
+	const authors = useSelector(selectAllAuthors);
 
 	useEffect(() => {
-		if (searchValue === '') {
-			setFilteredCourses((prev) => courses);
+		if (authors.length) return;
+
+		dispatch(getAuthorsAsync());
+	}, [authors, dispatch]);
+
+	const courses = useSelector(selectAllCourses);
+	const [filteredCourses, setFilteredCourses] = useState(courses);
+
+	const [searchValue, setSearchValue] = useState('');
+
+	useEffect(() => {
+		if (courses?.length) return;
+
+		dispatch(getCoursesAsync());
+	}, [courses, dispatch]);
+
+	useEffect(() => {
+		if (!searchValue) {
+			setFilteredCourses(() => courses);
 		}
 	}, [searchValue, courses]);
 
@@ -24,7 +44,7 @@ function Courses({ courses, setCourses, authors }) {
 	}
 
 	function filterCourses() {
-		setFilteredCourses((prev) =>
+		setFilteredCourses(() =>
 			filteredCourses.filter((course) =>
 				course.title.toLowerCase().includes(searchValue.toLowerCase())
 			)
@@ -38,13 +58,14 @@ function Courses({ courses, setCourses, authors }) {
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
 			/>
-			{filteredCourses.map((course) => (
-				<CourseCard
-					course={course}
-					authors={authors}
-					key={course.id}
-				></CourseCard>
-			))}
+			{filteredCourses?.length &&
+				filteredCourses.map((course) => (
+					<CourseCard
+						course={course}
+						authors={authors}
+						key={course.id}
+					></CourseCard>
+				))}
 		</div>
 	);
 }

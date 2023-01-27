@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import { BUTTON_LOGOUT } from '../../constants';
+import { logoutUser } from '../../store/userSlice';
 import Logo from './components/Logo/Logo';
 import './Header.css';
 
 function Header() {
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [userName, setUserName] = useState('');
@@ -15,7 +18,8 @@ function Header() {
 	}, [userName]);
 
 	function logout() {
-		localStorage.clear();
+		dispatch(logoutUser());
+
 		navigate('/login');
 	}
 

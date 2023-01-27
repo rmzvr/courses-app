@@ -3,8 +3,12 @@ import './Login.css';
 import Input from '../../common/Input/Input';
 import Button from '../../common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { saveUser } from '../../store/userSlice';
 
 function Login() {
+	const dispatch = useDispatch();
+
 	const [fields, setFields] = useState({
 		email: '',
 		password: '',
@@ -34,8 +38,14 @@ function Login() {
 		const { successful, result, user } = await response.json();
 
 		if (successful && result) {
-			localStorage.setItem('jwt', result);
-			localStorage.setItem('userName', user.name);
+			dispatch(
+				saveUser({
+					name: user.name,
+					email: user.email,
+					token: result,
+					isAuth: true,
+				})
+			);
 
 			navigate('/courses');
 		}
