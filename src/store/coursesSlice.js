@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { fetchCourses } from '../services';
 
 const initialState = {
 	courses: [],
@@ -8,13 +9,7 @@ const initialState = {
 
 export const getCoursesAsync = createAsyncThunk(
 	'courses/getCoursesAsync',
-	async () => {
-		const response = await fetch('http://localhost:4000/courses/all');
-
-		if (response.ok) {
-			return await response.json();
-		}
-	}
+	fetchCourses
 );
 
 export const coursesSlice = createSlice({

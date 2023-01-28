@@ -3,6 +3,7 @@ import './Registration.css';
 import Input from '../../common/Input/Input';
 import Button from '../../common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
+import { registerUser } from '../../services';
 
 function Registration() {
 	const [fields, setFields] = useState({
@@ -24,15 +25,7 @@ function Registration() {
 
 		const credentials = { ...fields };
 
-		const response = await fetch('http://localhost:4000/register', {
-			method: 'POST',
-			body: JSON.stringify(credentials),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		});
-
-		const { successful } = await response.json();
+		const { successful } = await registerUser(credentials);
 
 		if (successful) {
 			navigate('/login');

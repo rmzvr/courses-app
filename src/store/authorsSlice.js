@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { fetchAuthors } from '../services';
 
 const initialState = {
 	authors: [],
@@ -8,13 +9,7 @@ const initialState = {
 
 export const getAuthorsAsync = createAsyncThunk(
 	'authors/getAuthorsAsync',
-	async () => {
-		const response = await fetch('http://localhost:4000/authors/all');
-
-		if (response.ok) {
-			return await response.json();
-		}
-	}
+	fetchAuthors
 );
 
 export const authorsSlice = createSlice({

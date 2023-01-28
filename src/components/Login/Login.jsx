@@ -5,6 +5,7 @@ import Button from '../../common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { saveUser } from '../../store/userSlice';
+import { loginUser } from '../../services';
 
 function Login() {
 	const dispatch = useDispatch();
@@ -27,22 +28,14 @@ function Login() {
 
 		const credentials = { ...fields };
 
-		const response = await fetch('http://localhost:4000/login', {
-			method: 'POST',
-			body: JSON.stringify(credentials),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		});
+		const { successful, result: token, user } = await loginUser(credentials);
 
-		const { successful, result, user } = await response.json();
-
-		if (successful && result) {
+		if (successful && token) {
 			dispatch(
 				saveUser({
 					name: user.name,
 					email: user.email,
-					token: result,
+					token: token,
 					isAuth: true,
 				})
 			);
