@@ -119,7 +119,7 @@ function CourseFrom() {
 		const updatedCourse = {
 			title: fields.title,
 			description: fields.description,
-			duration: fields.duration,
+			duration: +fields.duration,
 			authors: [...selectedAuthors.map((author) => author.id)],
 		};
 
