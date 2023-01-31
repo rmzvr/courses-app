@@ -1,5 +1,5 @@
 import React from 'react';
-import './Button.css';
+import styles from './Button.module.css';
 
 function Button({
 	className = '',
@@ -9,9 +9,12 @@ function Button({
 	onClick,
 	children,
 }) {
+	console.log(className);
 	return (
 		<button
-			className={`${className} ${size} ${form}`}
+			className={`${styles[className] ?? ''} ${styles[size] ?? ''} ${
+				styles[form] ?? ''
+			} ${styles['button']}`}
 			type={type}
 			onClick={onClick}
 		>

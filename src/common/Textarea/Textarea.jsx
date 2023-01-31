@@ -1,4 +1,4 @@
-import './Textarea.css';
+import styles from './Textarea.module.css';
 
 function Textarea({
 	labelText = '',
@@ -8,9 +8,14 @@ function Textarea({
 	onChange,
 }) {
 	return (
-		<div className='textarea-wrapper'>
-			{labelText && <label htmlFor='textarea'>{labelText}</label>}
+		<div>
+			{labelText && (
+				<label className={styles['label']} htmlFor='textarea'>
+					{labelText}
+				</label>
+			)}
 			<textarea
+				className={styles['textarea']}
 				id='textarea'
 				name={name}
 				placeholder={placeholder}

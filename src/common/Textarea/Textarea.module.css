@@ -1,4 +1,4 @@
-textarea {
+.textarea {
 	padding-block: 0.8em;
 	padding-inline: 0.8em;
 	border: 2px solid orange;
@@ -8,12 +8,12 @@ textarea {
 	resize: vertical;
 }
 
-label {
+.label {
 	display: block;
 	margin-bottom: 0.4rem;
 }
 
-textarea:hover,
-textarea:focus {
+.textarea:hover,
+.textarea:focus {
 	outline: none;
 }

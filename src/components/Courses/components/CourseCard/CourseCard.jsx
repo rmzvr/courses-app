@@ -1,18 +1,21 @@
 import React from 'react';
 import reformatDate from '../../../../helpers/dateGeneratop';
 import timeConvert from '../../../../helpers/pipeDuration';
-import './CourseCard.css';
+import styles from './CourseCard.module.css';
 import Button from '../../../../common/Button/Button';
 import { BUTTON_SHOW_COURSE } from '../../../../constants';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import pencil from '../../../../assets/pencil.svg';
 import trash from '../../../../assets/trash.svg';
-import { deleteCourse } from '../../../../store/coursesSlice';
+import { useRole } from '../../../../hooks/useRole';
+import { deleteCourseAsync } from '../../../../store/coursesSlice';
 
 function CourseCard({ course, authors }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	const isAdminRole = useRole();
 
 	function getAuthors() {
 		return course.authors.map((authorId) => {
@@ -22,8 +25,12 @@ function CourseCard({ course, authors }) {
 		});
 	}
 
-	function handleDeleteCourse(id) {
-		dispatch(deleteCourse(id));
+	function deleteCourse(id) {
+		dispatch(deleteCourseAsync(id));
+	}
+
+	function navigateToUpdateCourseForm(id) {
+		navigate(`update/${id}`);
 	}
 
 	function navigateToCourse(id) {
@@ -31,50 +38,59 @@ function CourseCard({ course, authors }) {
 	}
 
 	return (
-		<article className='course-card'>
-			<div className='course-card__description'>
-				<h2 className='title'>{course.title}</h2>
+		<article className={styles['course-card']}>
+			<div className={styles['course-card__description']}>
+				<h2 className={styles['title']}>{course.title}</h2>
 
-				<p className='description'>{course.description}</p>
+				<p className={styles['description']}>{course.description}</p>
 			</div>
 
-			<div className='course-card__info'>
-				<ul className='details'>
-					<li className='detail'>
-						<span className='detail__title'>Authors:</span>
+			<div className={styles['course-card__info']}>
+				<ul className={styles['details']}>
+					<li className={styles['detail']}>
+						<span className={styles['detail__title']}>Authors:</span>
 
-						<span className='detail__content'>{getAuthors().join(', ')}</span>
+						<span className={styles['detail__content']}>
+							{getAuthors().join(', ')}
+						</span>
 					</li>
 
-					<li className='detail'>
-						<span className='detail__title'>Duration:</span>
+					<li className={styles['detail']}>
+						<span className={styles['detail__title']}>Duration:</span>
 
-						<span className='detail__content'>
+						<span className={styles['detail__content']}>
 							{timeConvert(course.duration)} hours
 						</span>
 					</li>
 
-					<li className='detail'>
-						<span className='detail__title'>Created:</span>
+					<li className={styles['detail']}>
+						<span className={styles['detail__title']}>Created:</span>
 
-						<span className='detail__content'>
+						<span className={styles['detail__content']}>
 							{reformatDate(course.creationDate)}
 						</span>
 					</li>
 				</ul>
 
-				<div className='course-card__button-container'>
+				<div className={styles['course-card__button-container']}>
 					<Button onClick={() => navigateToCourse(course.id)}>
 						{BUTTON_SHOW_COURSE}
 					</Button>
 
-					<Button form='squared'>
-						<img src={pencil} alt='edit icon' width='17' />
-					</Button>
+					{isAdminRole && (
+						<>
+							<Button
+								form='squared'
+								onClick={() => navigateToUpdateCourseForm(course.id)}
+							>
+								<img src={pencil} alt='edit icon' width='17' />
+							</Button>
 
-					<Button form='squared' onClick={() => handleDeleteCourse(course.id)}>
-						<img src={trash} alt='delete icon' width='17' />
-					</Button>
+							<Button form='squared' onClick={() => deleteCourse(course.id)}>
+								<img src={trash} alt='delete icon' width='17' />
+							</Button>
+						</>
+					)}
 				</div>
 			</div>
 		</article>

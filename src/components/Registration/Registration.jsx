@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Registration.css';
+import styles from './Registration.module.css';
 import Input from '../../common/Input/Input';
 import Button from '../../common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
@@ -33,11 +33,11 @@ function Registration() {
 	}
 
 	return (
-		<section className='registration'>
-			<h1 className='registration__title'>Registration</h1>
-			<form className='registration__form' onSubmit={register}>
-				<ul className='registration__form-items'>
-					<li className='registration__form-item'>
+		<section className={styles['registration']}>
+			<h1 className={styles['registration__title']}>Registration</h1>
+			<form className={styles['registration__form']} onSubmit={register}>
+				<ul className={styles['registration__form-items']}>
+					<li className={styles['registration__form-item']}>
 						<Input
 							placeholder='Enter name'
 							labelText='Name'
@@ -46,7 +46,7 @@ function Registration() {
 							onChange={updateField}
 						/>
 					</li>
-					<li className='registration__form-item'>
+					<li className={styles['registration__form-item']}>
 						<Input
 							placeholder='Enter email'
 							labelText='Email'
@@ -55,7 +55,7 @@ function Registration() {
 							onChange={updateField}
 						/>
 					</li>
-					<li className='registration__form-item'>
+					<li className={styles['registration__form-item']}>
 						<Input
 							placeholder='Enter password'
 							labelText='Password'
@@ -66,11 +66,9 @@ function Registration() {
 						/>
 					</li>
 				</ul>
-				<Button className='registration__form-button' type='submit'>
-					Registration
-				</Button>
+				<Button type='submit'>Registration</Button>
 			</form>
-			<span className='registration__hint'>
+			<span className={styles['registration__hint']}>
 				If you have an account you can <Link to={'/login'}>Login</Link>
 			</span>
 		</section>

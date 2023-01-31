@@ -13,6 +13,8 @@
 
 .login__form {
 	display: grid;
+	justify-items: center;
+	gap: 1.2rem;
 }
 
 .login__form-items {

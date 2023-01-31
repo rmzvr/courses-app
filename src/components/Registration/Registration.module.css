@@ -13,6 +13,8 @@
 
 .registration__form {
 	display: grid;
+	justify-items: center;
+	gap: 1.2rem;
 }
 
 .registration__form-items {

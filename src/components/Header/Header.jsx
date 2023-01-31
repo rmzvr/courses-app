@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import { BUTTON_LOGOUT } from '../../constants';
-import { logoutUser } from '../../store/userSlice';
+import { logoutUserAsync } from '../../store/userSlice';
 import Logo from './components/Logo/Logo';
-import './Header.css';
+import styles from './Header.module.css';
 
 function Header() {
 	const dispatch = useDispatch();
@@ -13,21 +13,23 @@ function Header() {
 	const location = useLocation();
 	const [userName, setUserName] = useState('');
 
+	const token = localStorage.getItem('jwt');
+
 	useEffect(() => {
 		setUserName(localStorage.getItem('userName'));
 	}, [userName]);
 
 	function logout() {
-		dispatch(logoutUser());
+		dispatch(logoutUserAsync(token));
 
 		navigate('/login');
 	}
 
 	return (
-		<header>
+		<header className={styles['header']}>
 			<Logo />
-			<span className='spacer' />
-			{userName && <span className='username'>{userName}</span>}
+			<span className={styles['spacer']} />
+			{userName && <span className={styles['username']}>{userName}</span>}
 			{location.pathname === '/login' ||
 			location.pathname === '/registration' ? null : (
 				<Button size='small' onClick={logout}>

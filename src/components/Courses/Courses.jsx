@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthorsAsync, selectAllAuthors } from '../../store/authorsSlice';
 import { getCoursesAsync, selectAllCourses } from '../../store/coursesSlice';
+import { getUserAsync } from '../../store/userSlice';
 import CourseCard from './components/CourseCard/CourseCard';
 import SearchBar from './components/SearchBar/SearchBar';
-import './Courses.css';
+import styles from './Courses.module.css';
 
 function Courses() {
 	const dispatch = useDispatch();
 	const authors = useSelector(selectAllAuthors);
+	const token = localStorage.getItem('jwt');
 
 	useEffect(() => {
 		if (authors.length) return;
@@ -33,6 +35,10 @@ function Courses() {
 		}
 	}, [searchValue, courses]);
 
+	useEffect(() => {
+		dispatch(getUserAsync(token));
+	}, [dispatch, token]);
+
 	function handleSubmit(event) {
 		event.preventDefault();
 
@@ -52,20 +58,21 @@ function Courses() {
 	}
 
 	return (
-		<div className='courses'>
+		<div className={styles['courses']}>
 			<SearchBar
 				value={searchValue}
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
 			/>
-			{filteredCourses?.length &&
-				filteredCourses.map((course) => (
-					<CourseCard
-						course={course}
-						authors={authors}
-						key={course.id}
-					></CourseCard>
-				))}
+			{filteredCourses?.length
+				? filteredCourses.map((course) => (
+						<CourseCard
+							course={course}
+							authors={authors}
+							key={course.id}
+						></CourseCard>
+				  ))
+				: null}
 		</div>
 	);
 }

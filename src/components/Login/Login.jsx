@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Login.css';
+import styles from './Login.module.css';
 import Input from '../../common/Input/Input';
 import Button from '../../common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
@@ -37,19 +37,20 @@ function Login() {
 					email: user.email,
 					token: token,
 					isAuth: true,
+					role: user.email === 'admin@email.com' ? 'admin' : 'user',
 				})
 			);
 
-			navigate('/courses');
+			navigate('/courses', { replace: true });
 		}
 	}
 
 	return (
-		<section className='login'>
-			<h1 className='login__title'>Login</h1>
-			<form className='login__form' onSubmit={login}>
-				<ul className='login__form-items'>
-					<li className='login__form-item'>
+		<section className={styles['login']}>
+			<h1 className={styles['login__title']}>Login</h1>
+			<form className={styles['login__form']} onSubmit={login}>
+				<ul className={styles['login__form-items']}>
+					<li className={styles['login__form-item']}>
 						<Input
 							placeholder='Enter email'
 							labelText='Email'
@@ -58,7 +59,7 @@ function Login() {
 							onChange={updateField}
 						/>
 					</li>
-					<li className='login__form-item'>
+					<li className={styles['login__form-item']}>
 						<Input
 							placeholder='Enter password'
 							labelText='Password'
@@ -69,11 +70,11 @@ function Login() {
 						/>
 					</li>
 				</ul>
-				<Button className='login__form-button' type='submit'>
+				<Button className={styles['login__form-button']} type='submit'>
 					Login
 				</Button>
 			</form>
-			<span className='login__hint'>
+			<span className={styles['login__hint']}>
 				If you not have an account you can{' '}
 				<Link to={'/registration'}>Registration</Link>
 			</span>

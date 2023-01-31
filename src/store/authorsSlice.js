@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchAuthors } from '../services';
+import { fetchAuthors, addAuthor } from '../services';
 
 const initialState = {
 	authors: [],
@@ -12,22 +12,20 @@ export const getAuthorsAsync = createAsyncThunk(
 	fetchAuthors
 );
 
+export const addAuthorAsync = createAsyncThunk(
+	'authors/addAuthorAsync',
+	addAuthor
+);
+
 export const authorsSlice = createSlice({
 	name: 'authors',
 	initialState,
-	reducers: {
-		addAuthor: (state, action) => {
-			const author = action.payload;
-
-			state.authors.push(author);
-		},
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(getAuthorsAsync.pending, (state, action) => {
 				state.status = 'loading';
 			})
-
 			.addCase(getAuthorsAsync.fulfilled, (state, action) => {
 				state.status = 'succeeded';
 
@@ -36,12 +34,22 @@ export const authorsSlice = createSlice({
 			.addCase(getAuthorsAsync.rejected, (state, action) => {
 				state.status = 'error';
 				state.error = action.error.message;
+			})
+			.addCase(addAuthorAsync.pending, (state, action) => {
+				state.status = 'loading';
+			})
+			.addCase(addAuthorAsync.fulfilled, (state, action) => {
+				state.status = 'succeeded';
+
+				state.authors.push(action.payload.result);
+			})
+			.addCase(addAuthorAsync.rejected, (state, action) => {
+				state.status = 'error';
+				state.error = action.error.message;
 			});
 	},
 });
 
 export const selectAllAuthors = (state) => state.authors.authors;
-
-export const { addAuthor } = authorsSlice.actions;
 
 export default authorsSlice.reducer;

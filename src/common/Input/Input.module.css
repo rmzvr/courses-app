@@ -1,17 +1,17 @@
-input {
+.input {
 	padding-block: 0.4em;
 	padding-inline: 0.8em;
 	border: 2px solid orange;
 	font-size: 0.938rem;
 }
 
-label {
+.label {
 	display: block;
 	margin-bottom: 0.4rem;
 	font-weight: 300;
 }
 
-input:hover,
-input:focus {
+.input:hover,
+.input:focus {
 	outline: none;
 }

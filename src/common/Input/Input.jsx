@@ -1,5 +1,5 @@
 import React from 'react';
-import './Input.css';
+import styles from './Input.module.css';
 import { v4 as uuidv4 } from 'uuid';
 
 function Input({
@@ -12,9 +12,14 @@ function Input({
 	pattern,
 }) {
 	return (
-		<div className='input-wrapper'>
-			{labelText && <label htmlFor={'input-' + uuidv4()}>{labelText}</label>}
+		<div>
+			{labelText && (
+				<label className={styles['label']} htmlFor={'input-' + uuidv4()}>
+					{labelText}
+				</label>
+			)}
 			<input
+				className={styles['input']}
 				id={'input-' + uuidv4()}
 				type={type}
 				name={name}

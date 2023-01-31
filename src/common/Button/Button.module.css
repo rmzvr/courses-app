@@ -1,4 +1,4 @@
-button {
+.button {
 	display: inline-grid;
 	place-content: center;
 
@@ -13,14 +13,14 @@ button {
 	cursor: pointer;
 }
 
-button.small {
+.button.small {
 	font-size: 0.833rem;
 }
 
-button.big {
+.button.big {
 	font-size: 0.938rem;
 }
 
-button.squared {
+.button.squared {
 	padding: 0.4em;
 }
