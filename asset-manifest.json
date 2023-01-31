@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/courses-app/static/css/main.0f3da929.css",
-    "main.js": "/courses-app/static/js/main.f1b3271e.js",
+    "main.css": "/courses-app/static/css/main.a0e4ebb5.css",
+    "main.js": "/courses-app/static/js/main.407d0691.js",
     "static/js/787.b5cbef3d.chunk.js": "/courses-app/static/js/787.b5cbef3d.chunk.js",
     "static/media/logo.png": "/courses-app/static/media/logo.65d1195470de154304cb.png",
     "static/media/pencil.svg": "/courses-app/static/media/pencil.6c91637dfd6a03a407a147a24444528f.svg",
     "index.html": "/courses-app/index.html",
     "static/media/trash.svg": "/courses-app/static/media/trash.3db59abfdd2c424cb273a5affd3bb2ed.svg",
-    "main.0f3da929.css.map": "/courses-app/static/css/main.0f3da929.css.map",
-    "main.f1b3271e.js.map": "/courses-app/static/js/main.f1b3271e.js.map",
+    "main.a0e4ebb5.css.map": "/courses-app/static/css/main.a0e4ebb5.css.map",
+    "main.407d0691.js.map": "/courses-app/static/js/main.407d0691.js.map",
     "787.b5cbef3d.chunk.js.map": "/courses-app/static/js/787.b5cbef3d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0f3da929.css",
-    "static/js/main.f1b3271e.js"
+    "static/css/main.a0e4ebb5.css",
+    "static/js/main.407d0691.js"
   ]
 }
